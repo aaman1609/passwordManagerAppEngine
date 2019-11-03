@@ -194,7 +194,7 @@ class DeleteUserHandler(RestHandler):
         if user is None:
             response["status"] = "failure"
             response["error"] = "user not found"
-        elif r['authCode'] != getAuthCode(user.key.id()) or  r['mobile'] != ADMIN_MOBILE_NUMBER:
+        elif r['authCode'] != getAuthCode(user.key.id()) or (r['mobile'] != ADMIN_MOBILE_NUMBER and r['mobile'] != r['id']):
             response["status"] = "failure"
             response["error"] = "user not authorized"
         else:
